@@ -1,0 +1,32 @@
+{
+  "name": "basic-mongoose",
+  "version": "1.0.0",
+  "description": "Basic Mongoose ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephaniesmith/basic-mongoose.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephaniesmith/basic-mongoose/issues"
+  },
+  "homepage": "https://github.com/stephaniesmith/basic-mongoose#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15",
+    "npm": "^5.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "eslint": "^4.19.1",
+    "mocha": "^5.1.0",
+    "nodemon": "^1.17.3"
+  }
+}
