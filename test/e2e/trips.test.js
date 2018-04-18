@@ -96,4 +96,14 @@ describe('Trip API', () => {
                 assert.deepEqual(body, [tillamook]);
             });
     });
+
+    it('deletes a trip', () => {
+        return request.del(`/trips/${opal._id}`)
+            .then(() => {
+                return Trip.findById(opal._id);
+            })
+            .then(found => {
+                assert.isNull(found);
+            });
+    });
 });
