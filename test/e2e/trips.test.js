@@ -5,7 +5,7 @@ const { dropCollection } = require('./db');
 
 describe('Trip API', () => {
     
-    // before(() => dropCollection('trips'));
+    before(() => dropCollection('trips'));
 
     let tillamook = {
         location: {
@@ -25,23 +25,22 @@ describe('Trip API', () => {
         gear: ['tent', 'backpack', 'sleep system', 'clothes', 'food', 'cook system']
     };
 
-    // let opal = {
-    //     location: {
-    //         park: 'Opal Creek Wilderness',
-    //         trail: 'Opal Creek Trail',
-    //         trailhead: 'Opal Creek TrailHead'
-    //     },
-    //     style: 'backpacking',
-    //     details: {
-    //         length: 10.5,
-    //         elevation: 1240,
-    //         days: 2,
-    //         nights: 1
-    //     },
-    //     season: 'summer',
-    //     campers: 3,
-    //     gear: ['tents', 'backpacks', 'sleep systems', 'clothes', 'food', 'cook systems']
-    // };
+    let opal = {
+        location: {
+            park: 'Opal Creek Wilderness',
+            trail: 'Opal Creek Trail',
+            trailhead: 'Opal Creek TrailHead'
+        },
+        details: {
+            length: 10.5,
+            elevation: 1240,
+            days: 2,
+            nights: 1
+        },
+        season: 'summer',
+        campers: 3,
+        gear: ['tents', 'backpacks', 'sleep systems', 'clothes', 'food', 'cook systems']
+    };
 
     it('saves a trip', () => {
         return request.post('/trips')
@@ -52,6 +51,18 @@ describe('Trip API', () => {
                 assert.equal(__v, 0);
                 assert.deepEqual(body, { _id, __v, ...tillamook });
                 tillamook = body;
+            });
+    });
+
+    it('gets a trip by id', () => {
+        return Trip.create(opal)
+            .then(saved => {
+                opal = saved;
+                return request.get(`/trips/${opal._id}`);
+            })
+            .then(({ body }) => {
+                assert.equal(body.style, 'camping');
+                // assert.deepEqual(body, { style: 'camping', ... opal });
             });
     });
 });
