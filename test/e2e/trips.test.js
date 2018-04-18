@@ -68,4 +68,14 @@ describe('Trip API', () => {
                 assert.deepEqual(body, { style: 'camping', ... opal });
             });
     });
+
+    it('update trip by id', () => {
+        opal.style = 'backpacking';
+
+        return request.put(`/trips/${opal._id}`)
+            .send(opal)
+            .then(({ body }) => {
+                assert.deepEqual(body, opal);
+            });
+    });
 });
