@@ -5,7 +5,7 @@ const { dropCollection } = require('./db');
 
 describe('Trip API', () => {
     
-    before(() => dropCollection('trips'));
+    // before(() => dropCollection('trips'));
 
     let tillamook = {
         location: {
@@ -44,18 +44,10 @@ describe('Trip API', () => {
     // };
 
     it('saves a trip', () => {
-        return new Trip(tillamook).save()
-            .then(saved => {
-                saved = saved.toJSON();
-                assert.ok(saved._id);
-            });
+        return request.post('/trips')
+            .send(tillamook)
+            .then(({ body }) => 
+                assert.ok(body._id)
+            );
     });
-
-    // it('saves a trip', () => {
-    //     return request.post('/trips')
-    //         .send(tillamook)
-    //         .then(({ body }) => 
-    //             assert.ok(body._id)
-    //         );
-    // });
 });
