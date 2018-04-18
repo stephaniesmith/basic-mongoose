@@ -46,8 +46,12 @@ describe('Trip API', () => {
     it('saves a trip', () => {
         return request.post('/trips')
             .send(tillamook)
-            .then(({ body }) => 
-                assert.ok(body._id)
-            );
+            .then(({ body }) => {
+                const { _id, __v } = body;
+                assert.ok(body._id);
+                assert.equal(__v, 0);
+                assert.deepEqual(body, { _id, __v, ...tillamook });
+                tillamook = body;
+            });
     });
 });
