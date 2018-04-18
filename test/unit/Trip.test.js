@@ -23,7 +23,9 @@ describe('Trip model', () => {
 
         const trip = new Trip(data);
 
-        assert.deepEqual(trip.toJSON(), { _id: trip.id, ...data });
+        assert.deepEqual(trip.toJSON(), { _id: trip._id, ...data });
+
+        assert.isUndefined(trip.validateSync());
     });
 
 
