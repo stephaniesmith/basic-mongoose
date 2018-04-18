@@ -82,4 +82,11 @@ describe('Trip API', () => {
                 assert.deepEqual(updated, opal);
             });
     });
+
+    it('get all trips', () => {
+        return request.get('/trips')
+            .then(({ body }) => {
+                assert.deepEqual(body, [tillamook, opal]);
+            });
+    });
 });
