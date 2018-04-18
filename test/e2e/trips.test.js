@@ -89,4 +89,11 @@ describe('Trip API', () => {
                 assert.deepEqual(body, [tillamook, opal]);
             });
     });
+
+    it('queries trips', () => {
+        return request.get('/trips?location.park=Ecola%20State%20Park')
+            .then(({ body }) => {
+                assert.deepEqual(body, [tillamook]);
+            });
+    });
 });
