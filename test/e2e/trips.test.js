@@ -106,4 +106,12 @@ describe('Trip API', () => {
                 assert.isNull(found);
             });
     });
+
+    it('returns 404 on get of not-existent id', () => {
+        return request.get(`/trips/${opal._id}`)
+            .then(response => {
+                assert.equal(response.status, 404);
+                assert.match(response.body.error, /^Trip id/);
+            });
+    });
 });
