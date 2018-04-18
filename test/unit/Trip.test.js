@@ -20,6 +20,10 @@ describe('Trip model', () => {
             campers: 2,
             gear: ['tent', 'backpack', 'sleep system', 'clothes', 'food', 'cook system']
         };
+
+        const trip = new Trip(data);
+
+        assert.deepEqual(trip.toJSON(), { _id: trip.id, ...data });
     });
 
 
