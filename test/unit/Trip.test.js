@@ -57,4 +57,18 @@ describe('Trip model', () => {
         assert.equal(errors.campers.kind, 'required');
     });
 
+    it('season must be enum, campers must be min 1', () => {
+        const trip = new Trip({ 
+            location: {
+                park: 'Ecola State Park', 
+                trail: 'Tillamook Head Trail', 
+                trailhead: 'Tillamook Head Trailhead' 
+            }, 
+            season: 'hello',
+            campers: 0
+        });
+        const errors = getValidationErrors(trip.validateSync());
+        assert.equal(errors['season'].kind, 'enum');
+        assert.equal(errors['campers'].kind, 'min');
+    });
 });
