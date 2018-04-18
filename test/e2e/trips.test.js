@@ -76,6 +76,10 @@ describe('Trip API', () => {
             .send(opal)
             .then(({ body }) => {
                 assert.deepEqual(body, opal);
+                return Trip.findById(opal._id).then(roundTrip);
+            })
+            .then(updated => {
+                assert.deepEqual(updated, opal);
             });
     });
 });
