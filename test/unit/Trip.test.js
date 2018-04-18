@@ -2,6 +2,12 @@ const { assert } = require('chai');
 const Trip = require('../../lib/models/Trip');
 
 describe('Trip model', () => {
+
+    const getValidationErrors = validation => {
+        assert.isDefined(validation, 'expected validation errors but got none');
+        return validation.errors;
+    };
+
     it('vaild good model', () => {
         const data = {
             location: {
@@ -39,6 +45,16 @@ describe('Trip model', () => {
         });
         assert.ok(trip.style);
         assert.equal(trip.style, 'camping');
+    });
+
+    it('required fields', () => {
+        const trip = new Trip({});
+        const errors = getValidationErrors(trip.validateSync());
+        assert.equal(Object.keys(errors).length, 4);
+        assert.equal(errors['location.park'].kind, 'required');
+        assert.equal(errors['location.trail'].kind, 'required');
+        assert.equal(errors['location.trailhead'].kind, 'required');
+        assert.equal(errors.campers.kind, 'required');
     });
 
 });
