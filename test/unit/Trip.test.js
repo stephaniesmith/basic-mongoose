@@ -28,5 +28,8 @@ describe('Trip model', () => {
         assert.isUndefined(trip.validateSync());
     });
 
+    it('has default style of camping', () => {
+        
+    })
 
 });
