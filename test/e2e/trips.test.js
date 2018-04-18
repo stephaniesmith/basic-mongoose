@@ -54,15 +54,18 @@ describe('Trip API', () => {
             });
     });
 
+    const roundTrip = doc => JSON.parse(JSON.stringify(doc.toJSON()));
+
     it('gets a trip by id', () => {
         return Trip.create(opal)
+            .then(roundTrip)
             .then(saved => {
                 opal = saved;
                 return request.get(`/trips/${opal._id}`);
             })
             .then(({ body }) => {
                 assert.equal(body.style, 'camping');
-                // assert.deepEqual(body, { style: 'camping', ... opal });
+                assert.deepEqual(body, { style: 'camping', ... opal });
             });
     });
 });
