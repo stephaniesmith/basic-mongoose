@@ -4,9 +4,9 @@ const connect = require('./lib/connect');
 
 const PORT = process.env.PORT || 3000;
 
-const MONGOD_URI = process.env.MONGOD_URI || 'mongodb://localhost:27017/trips';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/trips';
 
-connect(MONGOD_URI);
+connect(MONGODB_URI);
 
 const server = http.createServer(app);
 
