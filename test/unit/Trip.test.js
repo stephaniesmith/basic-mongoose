@@ -29,7 +29,16 @@ describe('Trip model', () => {
     });
 
     it('has default style of camping', () => {
-        
-    })
+        const trip = new Trip({ 
+            location: {
+                park: 'Ecola State Park', 
+                trail: 'Tillamook Head Trail', 
+                trailhead: 'Tillamook Head Trailhead' 
+            }, 
+            campers: 2
+        });
+        assert.ok(trip.style);
+        assert.equal(trip.style, 'camping');
+    });
 
 });
