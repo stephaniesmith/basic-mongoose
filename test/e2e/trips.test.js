@@ -1,11 +1,11 @@
 const { assert } = require('chai');
 const request = require('./request');
 const Trip = require('../../lib/models/Trip');
-const { dropCollection } = require('./db');
+// const { dropCollection } = require('./db');
 
 describe('Trip API', () => {
     
-    before(() => dropCollection('trips'));
+    // before(() => dropCollection('trips'));
 
     let tillamook = {
         location: {
